@@ -1,73 +1,53 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        test-project
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div :class="$style.container">
+    <div :class="$style.header">
+      <h1 :class="$style.title">Каталог</h1>
+      <FilterList />
+    </div>
+
+    <div :class="$style.content">
+      <Sidebar />
+      <div :class="$style.catalog">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {}
-</script>
-
-<style>
+<style lang="scss" module>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
+  @include container();
+  padding-top: 32px;
+}
+
+.header,
+.content {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  justify-content: space-between;
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+  margin: 0 0 23px 0;
+
+  font-size: 32px;
+  line-height: 41px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.catalog {
+  width: 1104px;
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
+
