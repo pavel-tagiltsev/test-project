@@ -8,22 +8,35 @@
     <div :class="$style.content">
       <Sidebar />
       <div :class="$style.catalog">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card 
+        v-for="item in items"
+        :key="item.id"
+        :item="item"
+        />
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data: function () {
+    return {
+      items: []
+    };
+  },
+
+  methods: {},
+
+  mounted() {
+    this.$axios
+      .get("https://frontend-test.idaproject.com/api/product")
+      .then((result) => {
+        this.items = result.data;
+      });
+  },
+};
+</script>
 
 <style lang="scss" module>
 .container {

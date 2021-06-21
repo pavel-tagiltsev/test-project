@@ -1,18 +1,36 @@
 <template>
-    <aside :class="$style.aside">
-      <ul :class="$style.list">
-        <li :class="$style.item">
-          <span :class="$style.link">Рюкзаки</span>
-          </li>
-        <li :class="$style.item">
-          <span :class="$style.link">Футболки</span>
-          </li>
-        <li :class="$style.item">
-          <span :class="$style.link">Рубашки</span>
-          </li>
-      </ul>
-    </aside>
+  <aside :class="$style.aside">
+    <ul :class="$style.list">
+      <li
+        :class="$style.item"
+        v-for="category in categories"
+        :key="category.id"
+      >
+        <span :class="$style.link">{{ category.name }}</span>
+      </li>
+    </ul>
+  </aside>
 </template>
+
+<script>
+export default {
+  data: function () {
+    return {
+      categories: [],
+    };
+  },
+
+  methods: {},
+
+  mounted() {
+    this.$axios
+      .get("https://frontend-test.idaproject.com/api/product-category")
+      .then((result) => {
+        this.categories = result.data;
+      });
+  },
+};
+</script>
 
 <style lang="scss" module>
 .list {
@@ -30,11 +48,11 @@
 
 .link {
   border-bottom: 1px solid $black;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .link:hover,
-.link:focus  {
+.link:focus {
   border-bottom: none;
   color: $grey;
 }

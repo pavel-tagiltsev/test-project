@@ -1,12 +1,39 @@
 <template>
     <div :class="$style.filter">
-        <p :class="$style.title">Сортировать по: <span>цене</span></p>
-        <ul :class="$style.list">
+        <p @click="isActive = !isActive;" :class="$style.title">Сортировать по: <span>цене</span></p>
+        <ul :class="[$style.list, { active: isActive }]">
             <li :class="$style.item">По цене</li>
             <li :class="$style.item">По популярности</li>
         </ul>
     </div>
 </template>
+
+<script>
+export default {
+  data: function () {
+    return {
+      // items: [],
+      isActive: false
+
+    };
+  },
+
+  methods: {
+    openList(){
+      isActive = !isActive
+      console.log("1");
+    }
+  },
+
+  mounted() {
+    // this.$axios
+    //   .get("https://frontend-test.idaproject.com/api/product")
+    //   .then((result) => {
+    //     this.items = result.data;
+    //   });
+  },
+};
+</script>
 
 <style lang="scss" module>
 .filter {

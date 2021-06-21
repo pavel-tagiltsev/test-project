@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Cart/>
+    <!-- <Cart/> -->
     <Header/>
     <Nuxt />
   </div>

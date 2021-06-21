@@ -1,5 +1,5 @@
 <template>
-  <li :class="$style.card">
+  <li :class="$style.card" :data-category="this.$props.item.category">
     <div :class="$style.rating">
       <svg
         :class="$style.stare"
@@ -16,7 +16,7 @@
           fill="#F2C94C"
         />
       </svg>
-      <span :class="$style.counter">4.5</span>
+      <span :class="$style.counter">{{ this.$props.item.rating }}</span>
     </div>
     <svg
       :class="$style.cart"
@@ -48,15 +48,21 @@
 
     <img
       :class="$style.img"
-      src="~/assets/img/good.png"
+      :src="`https://frontend-test.idaproject.com${ this.$props.item.photo }`"
       width="142"
       height="180"
-      alt="Рюкзак Louis Vuitton Discovery"
+      :alt="this.$props.item.name"
     />
-    <h3 :class="$style.title">Рюкзак Louis Vuitton Discovery</h3>
-    <p :class="$style.price">150 000 ₽</p>
+    <h3 :class="$style.title">{{ this.$props.item.name }}</h3>
+    <p :class="$style.price">{{ this.$props.item.price }} ₽</p>
   </li>
 </template>
+
+<script>
+export default {
+  props: ["item"],
+};
+</script>
 
 <style lang="scss" module>
 .card {
@@ -102,6 +108,13 @@
   position: absolute;
   top: 18px;
   right: 18px;
+
+  cursor: pointer;
+}
+
+.cart:hover path,
+.cart:focus path{
+  fill: $black;
 }
 
 .img {
